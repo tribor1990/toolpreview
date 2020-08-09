@@ -1,0 +1,54 @@
+{% extends 'ordertool/base.html' %}
+
+{% block content %}
+
+
+     <table class="table table-dark table-striped table-bordered" id="table">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Job Title</th>
+      <th scope"cols"># Images</th>
+      <th scope="col">Orderdate</th>
+
+      <th scope="col">Deadline</th>
+      <th scope="col">Status</th>
+    </tr>
+  </thead>
+<div id="accordion">
+{% for job in jobs  %}
+<tbody>
+    <tr>
+      <th scope="row">{{job.id}}</th>
+      <td>
+        <div class="collapsed" data-toggle="collapse" data-target="#coll{{ forloop.counter }}" aria-expanded="true" aria-controls="collapseOne">
+         {{ job.title }} <button type="button" class="btn btn-default" aria-label="Left Align">
+  <span class="glyphicon glyphicon-menu-down" aria-hidden="true"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-caret-down-square-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+  <path fill-rule="evenodd" d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm4 4a.5.5 0 0 0-.374.832l4 4.5a.5.5 0 0 0 .748 0l4-4.5A.5.5 0 0 0 12 6H4z"/>
+</svg></span>
+</button>
+       
+ 
+
+        </div>
+    </div>
+
+    <div id="coll{{ forloop.counter }}" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+      <div class="card-body">
+ 
+       Production instructions: {{ job.comment }} 
+
+      </div>
+    
+  </div></td>
+      <td>{{job.amountimages}}</td>
+      <td>{{job.orderdate}}</td>
+      <td>{{job.deadlinedate}}</td>
+      <td>{{job.get_status_display}}</td>
+    </tr>
+
+{% endfor %}
+
+{% endblock content %}
+
+

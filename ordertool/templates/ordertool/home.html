@@ -1,0 +1,9 @@
+{% extends 'ordertool/base.html' %}
+
+{% block content %}
+
+<h1>Welcome to the Medusa Media Usertool</h1>
+<a class="btn btn-primary btn-lg" href='{% url 'loginuser' %}'>Click here to Login</a>
+
+<a class="btn btn-primary btn-lg" href='{% url 'signupuser' %}'>Click here to Signup</a>
+{% endblock content %}

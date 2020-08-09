@@ -1,0 +1,50 @@
+{% extends 'ordertool/base.html' %}
+
+{% block content %}
+
+  <link href='https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.4.0/dropzone.css' type='text/css' rel='stylesheet'>
+
+
+
+
+
+
+<h1>Create new Order</h1>
+
+<h2> {{ error }} </h2>
+
+ <form action="#" class="dropzone" method="POST">
+ {% csrf_token %}
+ {{ form.as_ul }}
+     </form> 
+     <input type="button" class="btn btn-outline-success btn-block" id='uploadfiles' value='Upload Files' enctype="multipart/form-data" >
+  </div>
+
+  
+</div>
+<script type="text/javascript">
+Dropzone.autoDiscover = false;
+
+var myDropzone = new Dropzone(".dropzone",  
+         {
+            url : "{% url 'newjob' %}",
+            paramName: "files", // The name that will be used to transfer the file
+            maxFilesize: 8096, // MB
+            clickable: true,
+            maxFiles: 200,
+            autoProcessQueue: false,
+            thumbnailWidth: 80,
+            thumbnailHeight: 80,
+            parallelUploads: 200,
+            uploadMultiple: true,
+            timeout: 180000,
+        }
+    );
+;
+
+$('#uploadfiles').click(function(){
+   myDropzone.processQueue();
+});
+
+</script>
+{% endblock content %}
